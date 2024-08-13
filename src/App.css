@@ -148,6 +148,12 @@
   text-align: center;
 }
 
+.info-container .leader {
+  float: left;
+  width: Calc(100% / 3);
+  text-align: center;
+}
+
 .info-container .tries {
   float: right;
   width: Calc(100% / 3);

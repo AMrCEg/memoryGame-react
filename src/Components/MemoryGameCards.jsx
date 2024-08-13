@@ -20,6 +20,10 @@ const MemoryGameCards = (props) => {
   // moves: To track the number of moves made by the player.
   const [moves, setMoves] = useState(0);
 
+  const [leader, setLeader] = useState(
+    localStorage.leader ? () => JSON.parse(localStorage.leader) : ""
+  );
+
   /*
   تغيير الحالة لمرة واحدة: نريد فقط أن يتم تنفيذ هذا التأثير مرة واحدة،
   هذا يعني أن هذا التأثير لن يُنفذ إلا عند تحميل المكون لأول مرة،
@@ -91,7 +95,7 @@ const MemoryGameCards = (props) => {
       const [firstCard, secondCard] = flippedCards;
       if (firstCard.imageName === secondCard.imageName) {
         setMatchedCards([...matchedCards, firstCard, secondCard]);
-        setMoves((oldMoves) => oldMoves - 1);
+        // setMoves((oldMoves) => oldMoves - 1);
       }
       setTimeout(() => setFlippedCards([]), 1000);
     }
@@ -100,9 +104,16 @@ const MemoryGameCards = (props) => {
   // Resetting the Game: The "Play Again" button resets the game,
   // reset the states (flippedCards, matchedCards, moves)
   // shuffle the cards again for a new game experience.
+
   const handlePlayAgain = () => {
     // console.log("handlePlayAgain");
     props.setIsStart(false);
+    if (!leader || moves < leader.moves) {
+      localStorage.setItem(
+        "leader",
+        JSON.stringify({ name: props.name, moves: moves })
+      );
+    }
     setFlippedCards([]);
     setMatchedCards([]);
     setMoves(0);
@@ -111,7 +122,7 @@ const MemoryGameCards = (props) => {
 
   return (
     <div className="memory-game-container">
-      <Header moves={moves} />
+      <Header moves={moves} name={props.name} leader={leader} />
       <div className="memory-game-cards">
         {cards.map((card) => (
           <Card
