@@ -9,8 +9,8 @@ const Card = (props) => {
       data-image={props.card.imageName}
       onClick={() => props.handleCardClick(props.card)}
     >
-      <div className="all front"></div>
-      <div className="all back">
+      <div className="front"></div>
+      <div className="back">
         <img
           src={`/memoryGame-react/imgs/png/${props.card.imageName}.png`}
           alt={props.card.imageName}
