@@ -1,3 +1,12 @@
+:root {
+  /* --main-color: #f44336; */
+  --main-color: #9e9e9e;
+  /* --secondary-color: white; */
+  /* --main-color: #333;*/
+  --secondary-color: #2196f3;
+  --width: 550px; /* Change Me*/
+}
+
 * {
   box-sizing: border-box;
   margin: 0;
@@ -10,4 +19,99 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
+  background: var(--main-color);
+}
+
+/* .centered {
+  width: var(--width);
+  height: calc(var(--width) / 5);
+
+  margin: auto;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+} */
+
+.name-input-container {
+  width: 100%;
+  height: calc(var(--width) / 5);
+  overflow: hidden;
+  position: relative;
+}
+
+label {
+  position: absolute;
+  top: calc(var(--width) / 15);
+  font: 400 calc(var(--width) / 15) Roboto;
+  color: rgba(255, 255, 255, 0.5);
+  cursor: text;
+  transition: 0.25s ease;
+}
+
+input {
+  display: block;
+  width: 100%;
+  padding-top: calc(var(--width) / 15);
+  border: none;
+  border-radius: 0;
+  color: white;
+  background: var(--main-color);
+  font-size: calc(var(--width) / 15);
+  transition: 0.3s ease;
+}
+input:valid ~ label {
+  top: 0;
+  font: 700 calc(var(--width) / 25) Roboto;
+  color: rgba(255, 255, 255, 0.5);
+}
+input:focus {
+  outline: none;
+}
+input:focus ~ label {
+  top: 0;
+  font: 700 calc(var(--width) / 25) Roboto;
+  color: var(--secondary-color);
+}
+input:focus ~ .bar:before {
+  transform: translateX(0);
+}
+input:-webkit-autofill {
+  -webkit-box-shadow: 0 0 0px 1000px var(--main-color) inset;
+  -webkit-text-fill-color: white !important;
+}
+.bar {
+  background: rgba(255, 255, 255, 0.5);
+  content: "";
+  width: var(--width);
+  height: calc(var(--width) / 150);
+  transition: 0.3s ease;
+  position: relative;
+}
+.bar:before {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 150%;
+  background: var(--secondary-color);
+  transform: translateX(-100%);
+}
+::selection {
+  background: rgba(33, 150, 243, 0.3);
+}
+
+.start-game {
+  margin-left: calc(var(--width) / 4);
+}
+
+@media (max-width: 767px) {
+  .name-input-container {
+    margin: 0 20px;
+    width: 335px;
+  }
+  .start-game {
+    margin-left: calc(var(--width) / 8);
+    margin-left: 70px;
+  }
 }

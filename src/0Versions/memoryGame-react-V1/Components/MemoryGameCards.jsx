@@ -24,33 +24,6 @@ const MemoryGameCards = (props) => {
     localStorage.leader ? () => JSON.parse(localStorage.leader) : ""
   );
 
-  // 2. إضافة ميزة توقيت اللعبة:
-  const [timer, setTimer] = useState(0);
-  const [gameOver, setGameOver] = useState(false);
-
-  useEffect(() => {
-    let interval;
-    if (props.isStart && !gameOver) {
-      interval = setInterval(() => {
-        setTimer((prevTimer) => prevTimer + 1);
-      }, 1000);
-    }
-    return () => clearInterval(interval);
-  }, [props.isStart, gameOver]);
-
-  useEffect(() => {
-    if (matchedCards.length === cards.length && cards.length > 0) {
-      setGameOver(true);
-      playSound("/memoryGame-react/sounds/game-over-sound.mp3");
-    }
-  }, [matchedCards, cards]);
-
-  const formatTime = (seconds) => {
-    const minutes = Math.floor(seconds / 60);
-    const remainingSeconds = seconds % 60;
-    return `${minutes}:${remainingSeconds < 10 ? "0" : ""}${remainingSeconds}`;
-  };
-
   /*
   تغيير الحالة لمرة واحدة: نريد فقط أن يتم تنفيذ هذا التأثير مرة واحدة،
   هذا يعني أن هذا التأثير لن يُنفذ إلا عند تحميل المكون لأول مرة،
@@ -118,13 +91,11 @@ const MemoryGameCards = (props) => {
 
   useEffect(() => {
     if (flippedCards.length === 2) {
-      playSound("/memoryGame-react/sounds/flip-sound.mp3");
       setMoves((oldMoves) => oldMoves + 1);
       const [firstCard, secondCard] = flippedCards;
       if (firstCard.imageName === secondCard.imageName) {
         setMatchedCards([...matchedCards, firstCard, secondCard]);
         // setMoves((oldMoves) => oldMoves - 1);
-        playSound("/memoryGame-react/sounds/match-sound.mp3");
       }
       setTimeout(() => setFlippedCards([]), 1000);
     }
@@ -133,6 +104,7 @@ const MemoryGameCards = (props) => {
   // Resetting the Game: The "Play Again" button resets the game,
   // reset the states (flippedCards, matchedCards, moves)
   // shuffle the cards again for a new game experience.
+
   const handlePlayAgain = () => {
     // console.log("handlePlayAgain");
     props.setIsStart(false);
@@ -145,25 +117,12 @@ const MemoryGameCards = (props) => {
     setFlippedCards([]);
     setMatchedCards([]);
     setMoves(0);
-    setTimer(0);
     setCards(shuffleArray(cards));
-    props.setName("");
-  };
-
-  // 3. إضافة مؤثرات صوتية:
-  const playSound = (url) => {
-    const audio = new Audio(url);
-    audio.play();
   };
 
   return (
     <div className="memory-game-container">
-      <Header
-        moves={moves}
-        name={props.name}
-        leader={leader}
-        formatTime={formatTime(timer)}
-      />
+      <Header moves={moves} name={props.name} leader={leader} />
       <div className="memory-game-cards">
         {cards.map((card) => (
           <Card

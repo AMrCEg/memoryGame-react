@@ -126,41 +126,39 @@
   padding: 20px;
   margin: 20px auto 0;
 
+  /* display: flex;
+     justify-content: space-between;
+     align-content: center; */
+
   border: 2px solid #2196f3;
   font-size: 24px;
   margin-bottom: 10px;
 
   overflow: hidden;
-
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  flex-wrap: wrap;
-  text-transform: capitalize;
 }
 
-/* .info-container .name {
+.info-container .name {
   float: left;
-  width: Calc(100% / 4);
+  width: Calc(100% / 3);
 }
 
 .info-container .time {
   float: left;
-  width: Calc(100% / 4);
+  width: Calc(100% / 3);
   text-align: center;
 }
 
 .info-container .leader {
-  float: right;
-  width: Calc(100% / 4);
+  float: left;
+  width: Calc(100% / 3);
   text-align: center;
 }
 
 .info-container .tries {
   float: right;
-  width: Calc(100% / 4);
+  width: Calc(100% / 3);
   text-align: right;
-} */
+}
 
 .memory-game-cards {
   /* width: 1100px; */
@@ -226,6 +224,41 @@
   width: 140px;
   height: 140px;
   margin-top: 30px;
+}
+
+/* //small media */
+@media (max-width: 767px) {
+  .memory-game-container {
+    width: 375px;
+  }
+  .info-container {
+    padding: 5px;
+  }
+
+  .memory-game-cards {
+    grid-template-columns: repeat(auto-fill, minmax(75px, 1fr));
+    gap: 5px;
+  }
+  .memory-game-cards .card {
+    height: 75px;
+  }
+
+  .memory-game-cards .card .front {
+    font-size: 50px;
+    line-height: 70px;
+  }
+
+  .memory-game-cards .card img {
+    width: 75px;
+    height: 75px;
+    margin-top: 0;
+  }
+
+  .play-again {
+    left: 80%;
+    top: 60%;
+    font-size: 30px;
+  }
 }
 
 .memory-game-cards .card.flipped,
@@ -299,43 +332,4 @@
 }
 .bad-message {
   background-color: red;
-}
-
-/* //small media */
-@media (max-width: 767px) {
-  .memory-game-container {
-    width: 375px;
-  }
-  .info-container {
-    padding: 5px;
-  }
-
-  .memory-game-cards {
-    grid-template-columns: repeat(auto-fill, minmax(75px, 1fr));
-    gap: 5px;
-  }
-  .memory-game-cards .card {
-    height: 75px;
-  }
-
-  .memory-game-cards .card .front {
-    font-size: 50px;
-    line-height: 70px;
-  }
-
-  .memory-game-cards .card img {
-    width: 75px;
-    height: 75px;
-    margin-top: 0;
-  }
-
-  .play-again {
-    left: 80%;
-    top: 60%;
-    font-size: 30px;
-  }
-
-  .info-container .leader {
-    order: 1;
-  }
 }

@@ -1,21 +1,20 @@
 import React, { useState } from "react";
+
 const Header = (props) => {
   return (
     <div className="info-container">
       <div className="name">
         Hello : <span>{props.name || "..."}</span>
       </div>
-
-      <div className="time">
-        Time: <span>{props.formatTime}</span>
-      </div>
-
+      {/* <div className="time">
+        Time : <span className="minutes">00</span>:
+        <span className="seconds">00</span>
+      </div> */}
       {localStorage.leader && (
         <div className="leader">
-          Leader : {props.leader.name} has moved {props.leader.moves} times
+          leader : {props.leader.name} is move {props.leader.moves} times
         </div>
       )}
-
       <div className="tries">
         Moves : <span>{props.moves}</span>
       </div>
