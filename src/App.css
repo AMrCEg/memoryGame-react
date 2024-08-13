@@ -335,6 +335,12 @@
     font-size: 30px;
   }
 
+  .info-container {
+    width: 355px;
+    padding: 0;
+    margin-right: 10px;
+    font-size: 20px;
+  }
   .info-container .leader {
     order: 1;
   }
