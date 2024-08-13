@@ -48,8 +48,12 @@ const MemoryGameCards = (props) => {
   };
 
   const handleCardClick = (card) => {
-    if (flippedCards.length < 2 && !flippedCards.includes(card)) {
-      setFlippedCards([...flippedCards, card]);
+    if (
+      flippedCards.length < 2 && // التأكد من أنه لا يوجد أكثر من بطاقتين في flippedCards
+      !flippedCards.includes(card) && // التأكد من أن البطاقة ليست في flippedCards
+      !matchedCardsIds.includes(card.id) // التأكد من أن البطاقة ليست في matchedCardsIds
+    ) {
+      setFlippedCards([...flippedCards, card]); // إذا كانت الشروط مستوفاة، نضيف البطاقة إلى قائمة البطاقات المكشوفة
     }
   };
 
@@ -57,9 +61,9 @@ const MemoryGameCards = (props) => {
   useEffect(() => {
     if (flippedCards.length === 2) {
       setMoves((oldMoves) => oldMoves + 1);
-      const [first, second] = flippedCards;
-      if (first.imageName === second.imageName) {
-        setMatchedCardsIds([...matchedCardsIds, first.id, second.id]);
+      const [firstCard, secondCard] = flippedCards;
+      if (firstCard.imageName === secondCard.imageName) {
+        setMatchedCardsIds([...matchedCardsIds, firstCard.id, secondCard.id]);
         setMoves((oldMoves) => oldMoves - 1);
       }
       setTimeout(() => setFlippedCards([]), 1000);
@@ -69,6 +73,9 @@ const MemoryGameCards = (props) => {
   const handlePlayAgain = () => {
     console.log("handlePlayAgain");
     props.setIsStart(false);
+    setFlippedCards([]);
+    setMatchedCardsIds([]);
+    setMoves(0);
   };
 
   return (

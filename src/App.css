@@ -167,9 +167,9 @@
   gap: 10px;
 }
 
-.memory-game-cards.no-clicking {
+/* .memory-game-cards.no-clicking {
   pointer-events: none;
-}
+} */
 
 .memory-game-cards .card {
   /* width: 200px; */
