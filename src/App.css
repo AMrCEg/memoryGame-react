@@ -239,43 +239,6 @@
   pointer-events: none;
 }
 
-/* .card:hover{
-     -webkit-transform: rotateY(180deg);
-     -moz-transform: rotateY(180deg);
-     -ms-transform: rotateY(180deg);
-     -o-transform: rotateY(180deg);
-     transform:rotateY(180deg);
- } */
-
-.leaders-board {
-  /* width: 1080px; */
-  width: 100%;
-  margin: 0 auto;
-  color: #fff;
-  background-color: #009688;
-  padding: 15px;
-  font-size: 30px;
-
-  border-radius: 6px;
-}
-.leaders-board h3 {
-  background-color: #2196f3;
-  display: inline-block;
-  padding: 10px;
-  border-radius: 5px;
-  margin-bottom: 5px;
-}
-
-.leaders-board ul {
-  list-style: none;
-}
-
-.leaders-board ul li {
-  padding-left: 20px;
-  background-color: #2196f3;
-  margin-bottom: 5px;
-}
-
 .good-message,
 .bad-message {
   color: #fff;

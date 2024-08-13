@@ -61,11 +61,11 @@ input {
   font-size: calc(var(--width) / 15);
   transition: 0.3s ease;
 }
-input:valid ~ label {
+/* input:valid ~ label {
   top: 0;
   font: 700 calc(var(--width) / 25) Roboto;
   color: rgba(255, 255, 255, 0.5);
-}
+} */
 input:focus {
   outline: none;
 }

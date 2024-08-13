@@ -29,6 +29,13 @@ function App() {
     }
   };
 
+  // use enter key to start game
+  const handleKeyPress = (e) => {
+    if (e.key === "Enter") {
+      handleNameSubmit();
+    }
+  };
+
   // 3. إضافة مؤثرات صوتية:
   const playSound = (url) => {
     const audio = new Audio(url);
@@ -44,9 +51,9 @@ function App() {
               className="name-input"
               type="text"
               value={name}
-              onChange={(e) => setName(e.target.value)}
               id="name"
-              required="required"
+              onChange={(e) => setName(e.target.value)}
+              onKeyDown={handleKeyPress} //  use enter key to start game
             />
             <label htmlFor="name" className="name-label">
               Enter your name
